@@ -27,9 +27,7 @@ SECRET_KEY = 'django-insecure-u*-jq-x4msfw2b38custmrgep*2f*=9ynumyg2mo+-z5f-chu#
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CSRF_TRUSTED_ORIGINS = ["http://0.0.0.0"]
 
 # Application definition
 
@@ -91,6 +89,10 @@ DATABASES = {
 }
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_URL = '/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'images/')
+
 
 
 # Password validation
