@@ -28,14 +28,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS = [
-    "http://0.0.0.0",
-    "http://185.93.110.67",
-    "https://185.93.110.67",
-    "http://grindelwaldoff.no-ip.org",
-    "http://127.0.4.207",
-    "https://127.0.4.207"
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "http://0.0.0.0",
+#     "http://185.93.110.67",
+#     "https://185.93.110.67",
+#     "http://grindelwaldoff.no-ip.org",
+#     "http://127.0.4.207",
+#     "https://127.0.4.207"
+# ]
 
 # Application definition
 
@@ -90,12 +90,12 @@ WSGI_APPLICATION = 'CatApi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DB_ENGINE'),
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT')
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DBNAME'),
+        'USER': os.getenv('DBUSER'),
+        'PASSWORD': os.getenv('DBPASS'),
+        'HOST': os.getenv('DBHOST'),
+        'PORT': 5432
     }
 }
 # DATABASES = {
