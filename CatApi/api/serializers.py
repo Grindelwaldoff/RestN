@@ -1,12 +1,49 @@
 from rest_framework import serializers
 
-from products.models import Categories, Products, Params
+from products.models import Categorie, Product, Param
+from portfolio.models import Portfolio, Coord, SalesImage
+
+
+class CoordSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Coord
+        fields = ('name', 'yacoord',)
+
+
+class SalesImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SalesImage
+        fields = ('pic',)
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        return data['pic']
+
+
+class PortfolioSerializer(serializers.ModelSerializer):
+    images = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Portfolio
+        fields = ('name', 'id', 'description', 'images')
+
+    def get_images(self, obj):
+        request = self.context.get('request')
+        objects = obj.images.all().values_list('image', flat=True)
+        data = []
+        for i in objects:
+            data.append(
+                request.build_absolute_uri(i).replace('portfolios/', 'images/')
+            )
+        return data
 
 
 class ParamsSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Params
+        model = Param
         fields = ('name', 'options')
 
 
@@ -15,7 +52,7 @@ class ProductsSerializer(serializers.ModelSerializer):
     images = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
-        model = Products
+        model = Product
         fields = (
             'name', 'visible', 'description',
             'images', 'price', 'params'
@@ -25,14 +62,21 @@ class ProductsSerializer(serializers.ModelSerializer):
         return ParamsSerializer(obj.params).data
 
     def get_images(self, obj):
-        return obj.images.all().values_list("image", flat=True)
+        request = self.context.get('request')
+        objects = obj.images.all().values_list('image', flat=True)
+        data = []
+        for i in objects:
+            data.append(
+                request.build_absolute_uri(i).replace('category/', 'images/')
+            )
+        return data
 
 
 class CategoriesSerializer(serializers.ModelSerializer):
     items = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
-        model = Categories
+        model = Categorie
         fields = ('name', 'visible', 'preview', 'items')
 
     def get_items(self, obj):

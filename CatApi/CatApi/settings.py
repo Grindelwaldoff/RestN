@@ -27,7 +27,15 @@ SECRET_KEY = 'django-insecure-u*-jq-x4msfw2b38custmrgep*2f*=9ynumyg2mo+-z5f-chu#
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ["http://0.0.0.0"]
+CORS_ALLOW_ALL_ORIGINS = True
+CSRF_TRUSTED_ORIGINS = [
+    "http://0.0.0.0",
+    "http://185.93.110.67",
+    "https://185.93.110.67",
+    "http://grindelwaldoff.no-ip.org",
+    "http://127.0.4.207",
+    "https://127.0.4.207"
+]
 
 # Application definition
 
@@ -41,11 +49,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'products.apps.ProductsConfig',
     'api.apps.ApiConfig',
+    'portfolio.apps.PortfolioConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -87,13 +98,17 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT')
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'images/')
-
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

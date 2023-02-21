@@ -7,3 +7,4 @@ gunicorn
 psycopg2-binary
 webcolors
 flake8
+django-cors-headers

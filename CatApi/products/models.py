@@ -2,13 +2,13 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
 
-class Categories(models.Model):
+class Categorie(models.Model):
     name = models.CharField(
         max_length=150
     )
     visible = models.BooleanField()
     preview = models.ImageField(
-        upload_to='images',
+        upload_to='images/category',
         null=True, blank=True
     )
 
@@ -16,7 +16,7 @@ class Categories(models.Model):
         return str(self.name)
 
 
-class Products(models.Model):
+class Product(models.Model):
     name = models.CharField(
         max_length=150
     )
@@ -26,7 +26,7 @@ class Products(models.Model):
     )
     price = models.IntegerField()
     category = models.ForeignKey(
-        Categories,
+        Categorie,
         on_delete=models.CASCADE,
         related_name='products'
     )
@@ -35,7 +35,7 @@ class Products(models.Model):
         return str(self.name)
 
 
-class Params(models.Model):
+class Param(models.Model):
     name = models.CharField(
         max_length=150
     )
@@ -43,7 +43,7 @@ class Params(models.Model):
         models.CharField(max_length=150)
     )
     product = models.OneToOneField(
-        Products,
+        Product,
         on_delete=models.CASCADE,
         related_name='params'
     )
@@ -52,12 +52,15 @@ class Params(models.Model):
         return str(self.name)
 
 
-class ProductsImages(models.Model):
+class ProductsImage(models.Model):
     image = models.ImageField(
         upload_to='images/products/', null=True, blank=True
     )
     product = models.ForeignKey(
-        Products,
+        Product,
         on_delete=models.CASCADE,
         related_name='images'
     )
+
+    def __str__(self):
+        return str(self.product)
