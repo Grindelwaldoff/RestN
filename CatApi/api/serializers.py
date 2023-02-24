@@ -60,9 +60,13 @@ class ProductsSerializer(serializers.ModelSerializer):
 
     def get_params(self, obj):
         try:
-            return ParamsSerializer(obj.params).data
+            return ParamsSerializer(
+                obj.params,
+                many=True,
+                context=self.context
+            ).data
         except Exception:
-            return '[]'
+            return []
 
     def get_images(self, obj):
         request = self.context.get('request')
@@ -80,7 +84,7 @@ class CategoriesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Categorie
-        fields = ('name', 'visible', 'preview', 'items')
+        fields = ('name', 'visible', 'detail', 'preview', 'items',)
 
     def get_items(self, obj):
         return ProductsSerializer(

@@ -44,7 +44,7 @@ class Param(models.Model):
     options = ArrayField(
         models.CharField(max_length=150)
     )
-    product = models.OneToOneField(
+    product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
         related_name='params'

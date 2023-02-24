@@ -34,7 +34,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://185.93.110.67",
     "http://grindelwaldoff.no-ip.org",
     "http://127.0.4.207",
-    "https://127.0.4.207"
+    "https://127.0.4.207",
+    "http://51.250.85.198"
 ]
 
 # Application definition
@@ -90,11 +91,11 @@ WSGI_APPLICATION = 'CatApi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('DBNAME'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('POSTGRES_USER'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('DBHOST'),
+        'HOST': os.getenv('DB_HOST'),
         'PORT': 5432
     }
 }
