@@ -63,7 +63,6 @@ class ProductsSerializer(serializers.ModelSerializer):
             return ParamsSerializer(
                 obj.params,
                 many=True,
-                context=self.context
             ).data
         except Exception:
             return []

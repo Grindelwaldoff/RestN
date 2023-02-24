@@ -47,7 +47,8 @@ class Param(models.Model):
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
-        related_name='params'
+        related_name='params',
+        unique=False
     )
 
     def __str__(self):
