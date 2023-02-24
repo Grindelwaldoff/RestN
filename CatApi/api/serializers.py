@@ -59,7 +59,10 @@ class ProductsSerializer(serializers.ModelSerializer):
         )
 
     def get_params(self, obj):
-        return ParamsSerializer(obj.params).data
+        try:
+            return ParamsSerializer(obj.params).data
+        except Exception:
+            return '[]'
 
     def get_images(self, obj):
         request = self.context.get('request')

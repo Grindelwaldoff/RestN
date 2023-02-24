@@ -11,6 +11,8 @@ class Categorie(models.Model):
         upload_to='images/category',
         null=True, blank=True
     )
+    detail = models.BooleanField()
+    visible = models.BooleanField()
 
     def __str__(self):
         return str(self.name)
