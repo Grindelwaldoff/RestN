@@ -60,3 +60,6 @@ http://127.0.0.1/admin/
 * Docker
 * NGINX
 * Django Rest Framework
+
+### Автор
+Grindewaldoff
