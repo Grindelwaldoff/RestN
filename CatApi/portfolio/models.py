@@ -1,6 +1,7 @@
 import random
 
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.contrib.postgres.fields import ArrayField
 
 
@@ -15,10 +16,19 @@ class SalesImage(models.Model):
 
 class Coord(models.Model):
     name = models.CharField(max_length=150)
+    employee = models.CharField(max_length=250, null=True, blank=True)
+    tel = models.CharField(max_length=20, null=True, blank=True)
     yacoord = ArrayField(models.CharField(max_length=150))
 
     def __str__(self):
         return str(self.name)
+
+    def save(self, *args, **kwargs) -> None:
+        try:
+            int(self.tel)
+            return super().save(*args, **kwargs)
+        except Exception:
+            raise ValidationError('Телефон должен содержать только цифры.')
 
 
 class Portfolio(models.Model):

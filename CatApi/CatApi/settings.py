@@ -31,6 +31,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = [
     "http://0.0.0.0",
     "http://185.93.110.67",
+    "http://127.0.0.1",
     "https://185.93.110.67",
     "http://grindelwaldoff.no-ip.org",
     "http://127.0.4.207",

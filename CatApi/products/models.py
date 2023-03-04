@@ -27,6 +27,10 @@ class Product(models.Model):
         max_length=400
     )
     price = models.IntegerField()
+    params_props = ArrayField(
+        models.CharField(max_length=150),
+        null=True, blank=True
+    )
     category = models.ForeignKey(
         Categorie,
         on_delete=models.CASCADE,
@@ -43,6 +47,10 @@ class Param(models.Model):
     )
     options = ArrayField(
         models.CharField(max_length=150)
+    )
+    price = ArrayField(
+        models.CharField(max_length=250),
+        blank=True, null=True
     )
     product = models.ForeignKey(
         Product,

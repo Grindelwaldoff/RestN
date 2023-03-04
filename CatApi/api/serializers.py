@@ -8,7 +8,7 @@ class CoordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Coord
-        fields = ('name', 'yacoord',)
+        fields = ('name', 'tel', 'employee', 'yacoord',)
 
 
 class SalesImageSerializer(serializers.ModelSerializer):
@@ -26,7 +26,7 @@ class PortfolioSerializer(serializers.ModelSerializer):
     images = serializers.SerializerMethodField()
 
     class Meta:
-        model = Portfolio
+        modepassl = Portfolio
         fields = ('name', 'id', 'description', 'images')
 
     def get_images(self, obj):
@@ -44,7 +44,7 @@ class ParamsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Param
-        fields = ('name', 'options')
+        fields = ('name', 'options', 'price')
 
 
 class ProductsSerializer(serializers.ModelSerializer):
@@ -55,7 +55,7 @@ class ProductsSerializer(serializers.ModelSerializer):
         model = Product
         fields = (
             'name', 'visible', 'description',
-            'images', 'price', 'params'
+            'images', 'price', 'params_props', 'params'
         )
 
     def get_params(self, obj):
@@ -65,7 +65,7 @@ class ProductsSerializer(serializers.ModelSerializer):
                 many=True,
             ).data
         except Exception:
-            return []
+            return [] 
 
     def get_images(self, obj):
         request = self.context.get('request')
