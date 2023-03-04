@@ -24,7 +24,7 @@ class Product(models.Model):
     )
     visible = models.BooleanField()
     description = models.CharField(
-        max_length=400
+        max_length=400, null=True, blank=True
     )
     price = models.IntegerField()
     params_props = ArrayField(
