@@ -26,7 +26,7 @@ class PortfolioSerializer(serializers.ModelSerializer):
     images = serializers.SerializerMethodField()
 
     class Meta:
-        modepassl = Portfolio
+        model = Portfolio
         fields = ('name', 'id', 'description', 'images')
 
     def get_images(self, obj):
