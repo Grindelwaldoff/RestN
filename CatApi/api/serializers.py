@@ -44,7 +44,9 @@ class ParamsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Param
-        fields = ('name', 'options', 'price')
+        fields = ('name',
+            'options', 'price'
+        )
 
 
 class ProductsSerializer(serializers.ModelSerializer):
@@ -55,7 +57,8 @@ class ProductsSerializer(serializers.ModelSerializer):
         model = Product
         fields = (
             'name', 'visible', 'description',
-            'images', 'price', 'params_props', 'params'
+            'images', 'price', 'params',
+            'params_props',
         )
 
     def get_params(self, obj):

@@ -52,9 +52,8 @@ class Param(models.Model):
         models.CharField(max_length=250),
         blank=True, null=True
     )
-    product = models.ForeignKey(
+    product = models.ManyToManyField(
         Product,
-        on_delete=models.CASCADE,
         related_name='params',
         unique=False
     )
