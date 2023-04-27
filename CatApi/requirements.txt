@@ -1,0 +1,10 @@
+Django
+djangorestframework==3.12.4
+pillow
+django-filter
+pytz
+gunicorn
+psycopg2-binary
+webcolors
+flake8
+django-cors-headers
