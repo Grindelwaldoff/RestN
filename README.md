@@ -62,4 +62,4 @@ http://127.0.0.1/admin/
 * Django Rest Framework
 
 ### Автор
-Grindewaldoff
+Всеволод Рыбник tg: @Grindelwaldoff
